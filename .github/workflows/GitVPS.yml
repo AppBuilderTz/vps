@@ -1,0 +1,22 @@
+name: GitVPS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+    timeout-minutes: 99999999
+    
+    steps:
+      - name: Downloading & Installing Essentials
+        run: |
+          Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/9c8o7xzprbe4ktx67x5jn/Downloads.bat?rlkey=6fm0e3uy4okw39nn4dwqpzpgp&dl=1" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
+
+      - name: Log In To RustDesk
+        run: cmd /c show.bat
+
+      - name: Time Counter
+        run: python time.py
